@@ -2,6 +2,7 @@ import cv2
 import csv
 import numpy as np
 import os
+import sklearn
 from keras.models import Sequential
 from keras.layers import Flatten, Dense, Lambda, Convolution2D, Cropping2D
 from sklearn.model_selection import train_test_split
@@ -61,8 +62,6 @@ def getAllImages(centerPaths, leftPaths, rightPaths, angleList, correction):
     steers.extend([x + correction for x in steers]) # correction for left image
     steers.extend([x - correction for x in steers]) # correction for right image
     return (imagePaths, steers)
-
-import sklearn
 
 def generator(samples, batch_size=32):
     """
