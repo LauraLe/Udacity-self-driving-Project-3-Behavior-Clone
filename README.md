@@ -22,8 +22,7 @@ The goals / steps of this project are the following:
 [image3]: ./images/loss_5epochs.png "Loss after 5 epochs"
 [image4]: ./images/driving_central.png "Driving at Center Image"
 [image5]: ./images/driving_reverse.png "Driving Reverse Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -38,6 +37,8 @@ My project includes the following files:
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
 * README.md or writeup_report.pdf summarizing the results
+* images: visualization of some recorded data and model
+* drive_track1: video clip driving in autonomous of track 1 is uploaded on youtube link [here](https://youtu.be/fArwvZ_fpmI)
 
 #### 2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
@@ -56,6 +57,8 @@ The model.py file contains the code for training and saving the convolution neur
 I used model of [NIVIDA](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/)
 My model summary is below. 
 It consists of 1 lambda layer to normalize and cropping the inputs (crop 50 from the top and 20 from the bottom), 5 convolution layers and 3 fully connected layer.
+
+<prep>
 ____________________________________________________________________________________________________
 Layer (type)                     Output Shape          Param #     Connected to                     
 ====================================================================================================
@@ -83,6 +86,7 @@ dense_3 (Dense)                  (None, 10)            510         dense_2[0][0]
 ____________________________________________________________________________________________________
 dense_4 (Dense)                  (None, 1)             11          dense_3[0][0]                    
 ====================================================================================================
+</prep>
 Total params: 981,819
 Trainable params: 981,819
 
@@ -117,7 +121,7 @@ My first step was to use NVIDIA model on inputs without cropping and normalizati
 
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set by ratio 80%-20%. I first train for 3 epochs and the car would run very badly on the bridge and stuck to the end of the bridge. The training loss and validation loss looks as in 
 
-[!alt text][image2]
+![Image][image2]
 
 It look like there is an overfitting as the validation loss is higher than the training loss
 
@@ -126,13 +130,13 @@ To combat the overfitting, I added more training data, recording only when car g
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road. The loss after 5 epochs look as below
 
-[!alt text] [image3]
+![Image][image3]
 
 #### 2. Final Model Architecture
 
 The final model architecture visualization is below
 
-![alt text][image1]
+![Image][image1]
 
 #### 3. Creation of the Training Set & Training Process
 
@@ -143,10 +147,10 @@ Validation samples: 13133
 
 To capture good driving behavior, I first recorded two-three laps on track one using center lane driving. Here is an example image of center lane driving:
 
-![alt text][image4]
+![Image][image4]
 The 1st row are original images of center, left, right camera. The 2nd row are corresponding images after preprocess by normalize and crop 50 from the top & 20 from bottom
 
-![alt text][image5]
+![Image][image5]
 Above image show of images of reverse driving
 
 Then I repeated driving at center on track two in order to get more data points.
@@ -164,3 +168,5 @@ I finally randomly shuffled the data set and put 20% of the data into a validati
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 5 as evidenced by the decrease in MSE on validation set. Ideally I can get the ideal number of epochs by setting callback in keras and stop once the MSE on validation set does not improved after certain number of epochs. For the simplicity, I use 5 epochs and the model works. I used an adam optimizer so that manually training the learning rate wasn't necessary.
 
 The model.h5 perform well on Track 1 but did not work on Track 2.
+
+I cannot use python drive.py model.h5 run1 to save image to a folder because that worsen my model performance. Hence I use QuickPlayer to record my screen
