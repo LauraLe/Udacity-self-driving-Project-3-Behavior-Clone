@@ -49,10 +49,6 @@ def getImagePaths(dataPath):
     return (centerPaths, leftPaths, rightPaths, angleList)
 
 def getAllImages(centerPaths, leftPaths, rightPaths, angleList, correction):
-    """
-    Combine the images from `center`, `left` and `right` using the correction factor 
-    Returns ([imagePaths], [measurements])
-    """
     imagePaths = []
     imagePaths.extend(centerPaths)
     imagePaths.extend(leftPaths)
