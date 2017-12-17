@@ -58,8 +58,8 @@ I used model of [NIVIDA](https://devblogs.nvidia.com/parallelforall/deep-learnin
 My model summary is below. 
 It consists of 1 lambda layer to normalize and cropping the inputs (crop 50 from the top and 20 from the bottom), 5 convolution layers and 3 fully connected layer.
 
-<prep>
-____________________________________________________________________________________________________
+```
+_____________________________________________________________________________________________
 Layer (type)                     Output Shape          Param #     Connected to                     
 ====================================================================================================
 lambda_1 (Lambda)                (None, 160, 320, 3)   0           lambda_input_1[0][0]             
@@ -86,7 +86,7 @@ dense_3 (Dense)                  (None, 10)            510         dense_2[0][0]
 ____________________________________________________________________________________________________
 dense_4 (Dense)                  (None, 1)             11          dense_3[0][0]                    
 ====================================================================================================
-</prep>
+```
 Total params: 981,819
 Trainable params: 981,819
 
@@ -127,15 +127,12 @@ It look like there is an overfitting as the validation loss is higher than the t
 
 To combat the overfitting, I added more training data, recording only when car go through the bridges. I then train in 5 epochs. After that, the car run well on track 1 and as the result, I did not consider drop out.
 
-
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road. The loss after 5 epochs look as below
 
 ![Image][image3]
 
 #### 2. Final Model Architecture
-
 The final model architecture visualization is below
-
 ![Image][image1]
 
 #### 3. Creation of the Training Set & Training Process
@@ -151,10 +148,8 @@ To capture good driving behavior, I first recorded two-three laps on track one u
 The 1st row are original images of center, left, right camera. The 2nd row are corresponding images after preprocess by normalize and crop 50 from the top & 20 from bottom
 
 ![Image][image5]
-Above image show of images of reverse driving
-
+The above show images of reverse driving
 Then I repeated driving at center on track two in order to get more data points.
-
 To augment the data sat, I also flipped images and reverse angles thinking that this would help with the left-turn bias
 
  I also use center, left, right images. I adjust the steering angle of left & right image based on the centered image steering angle as following
