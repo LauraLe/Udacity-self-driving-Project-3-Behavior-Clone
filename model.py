@@ -122,8 +122,6 @@ if __name__ == '__main__':
     centerPaths, leftPaths, rightPaths, angleList = getImagePaths('data')
     imagePaths, angles = getAllImages(centerPaths, leftPaths, rightPaths, angleList, 0.2)
     
-    print('Total Images: {}'.format( len(imagePaths)))
-    
     # Splitting samples and creating generators.
    
     samples = list(zip(imagePaths, angles))
@@ -135,10 +133,9 @@ if __name__ == '__main__':
     train_generator = generator(train, batch_size=32)
     validation_generator = generator(validation, batch_size=32)
     
-    # Model creation
     model = nvidiaModel()
     
-    # Compiling and training the model
+    # Train the model
     model.compile(loss='mse', optimizer='adam')
     history_object = model.fit_generator(train_generator, samples_per_epoch= \
                      len(train), validation_data=validation_generator, \
