@@ -33,7 +33,7 @@ The goals / steps of this project are the following:
 #### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 
 My project includes the following files:
-* **drive_track1: video clip driving in autonomous of track 1 is uploaded on youtube link [here**](https://youtu.be/fArwvZ_fpmI)
+* drive_track1: video clip driving in autonomous of track 1 is uploaded on youtube link [**here**](https://youtu.be/fArwvZ_fpmI)
 * model.py containing the script to create and train the model
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
